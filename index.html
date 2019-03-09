@@ -291,7 +291,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/09/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2019/03/09/hello-world/" itemprop="url">我的第一篇博客</a></h1>
         
 
         <div class="post-meta">
@@ -303,7 +303,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T10:37:30+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T00:00:00+08:00">
                 2019-03-09
               </time>
             
@@ -313,6 +313,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -343,15 +365,25 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>偶然间看到使用hexo建立个人博客的方法，觉得挺简单的。正好自己一直以来因为各种原因（懒），都没有去建个人博客。花了一上午时间，顺带着一起美化了一下window的控制台和PowerShell，也总算建立好了自己的这么个小窝了哈哈。这里记录一下过程吧，总体上还是挺简单的。</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>要使用hexo，首先需要下载Node.js(<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">下载地址</a>)。<br>同时需要安装好Git并且在Github上注册自己的账号，最好在创建好私钥和公钥，并且在Github远端配置好公钥。[Git教程]（<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a><br>准备好这些之后，就可以安装hexo框架了。</p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>在自己电脑上创建好用于存放个人博客相关的文件夹，进入文件夹，shift+右键出现如下选项<br><img src="../images/img1.png" alt></p>
+<p>选择在此处打开PowerShell，这时就以当前文件夹所在位置进入到了Powershell中（PowerShell同样也是windows的命令行工具，类似cmd控制台但更强大）。这里吐槽一下原始的Powershell界面真的丑出天际，所以我花了些功夫对它进行了一下美化，具体可以参考<a href="https://sspai.com/post/52868" target="_blank" rel="noopener">告别 Windows 终端的难看难用，从改造 PowerShell 的外观开始</a>。打开它之后，我们就可以使用npm指令安装hexo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p><img src="../images/img2.png" alt></p>
+<p>安装过程出现了一些小问题不过随便google了一下就找到了原因，比起bug还是要好修不少的多了–。<br>这时候输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure></p>
+<p>成功初始化博客，这时只要输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
+<p>我们就可以在localhost:4000下面看到我们初始化好的博客界面了</p>
+<h3 id="推送网站"><a href="#推送网站" class="headerlink" title="推送网站"></a>推送网站</h3><p>本地创建好网站后，我们可以使用github托管我们的网站，将你的博客展现给更多的人浏览。这时候就需要现在github远端创建一个仓库，以我个人为例：<br><img src="../images/img3.png" alt><br><img src="../images/img4.png" alt></p>
+<p>后面的域名必须是自己Github账户的名称+github.io，我这里演示显示存在相同名称是因为我已经创建过这么一个仓库了（就是你现在看到的这个）。创建好之后把它的https地址复制下来：<br><img src="../images/img5.png" alt></p>
+<p>然后将我们的hexo博客与github关联起来，这里打开blog目录下的_config.yml配置文件：<br><img src="../images/img6.png" alt></p>
+<p>找到最下面的deploy进行修改，注意冒号后面要加空格（因为这个错误自己还多折腾了半天–）,type修改为git,repo里填上之前复制的https地址,branch选择创建一个主分支master：<br><img src="../images/img7.png" alt></p>
+<p>保存配置文件，安装git部署插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p><img src="../images/img8.png" alt></p>
+<p>安装完成后，执行下面指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
+<p>这时候，git就会把你的网站推送到远端，此时使用<a href="http://xxxx.github.io（xxxx为Github的用户名）就可以访问你自己的个人博客了。" target="_blank" rel="noopener">http://xxxx.github.io（xxxx为Github的用户名）就可以访问你自己的个人博客了。</a></p>
+<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>觉得默认主题不好看的话，可以选择自己更换主题，这里提供我自己使用的next,可以在文件夹下在输入：<br><code>git clone https://github.com/iissnan/hexo-theme-next themes/next</code><br><img src="../images/img9.png" alt><br>从远端克隆next主题下来，然后打开blog目录下的_config.yml，修改主题为next:<br><img src="../images/img10.png" alt></p>
+<p>更多详细操作设置可以访问hexo的官方网站：<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/index.html</a></p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>虽然一直也有记录的习惯，不过却自己一直懒得动手创建一个博客之类的东西将那些记录的东西归纳起来，既然现在有了这么个玩意儿，姑且慢慢把自己学过的东西整理过来吧。万丈高楼平地起，希望自己喜欢的事情，自己还是能坚持下来吧。</p>
 
           
         
@@ -442,7 +474,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
