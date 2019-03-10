@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MonoBehaviourMonoBehaviour是unity中所有组件都要继承的基类，只有继承了MonoBehaviour才能挂载到游戏场景中的游戏对象上。可以说，MonoBehaviour为unity的组件式开发提供了基础。但是在实际项目过程中我们不能一味的继承它，因为它会破坏我们原有的代码架构，并且会增大代码的维护难度，一般来说在这些情况下我们才选择继承MonoBehaviour：  协助">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity脚本常用API整理">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/UnityApi/index.html">
+<meta property="og:site_name" content="Nilzl&#39;s Blog">
+<meta property="og:description" content="MonoBehaviourMonoBehaviour是unity中所有组件都要继承的基类，只有继承了MonoBehaviour才能挂载到游戏场景中的游戏对象上。可以说，MonoBehaviour为unity的组件式开发提供了基础。但是在实际项目过程中我们不能一味的继承它，因为它会破坏我们原有的代码架构，并且会增大代码的维护难度，一般来说在这些情况下我们才选择继承MonoBehaviour：  协助">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-10T05:25:25.787Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unity脚本常用API整理">
+<meta name="twitter:description" content="MonoBehaviourMonoBehaviour是unity中所有组件都要继承的基类，只有继承了MonoBehaviour才能挂载到游戏场景中的游戏对象上。可以说，MonoBehaviour为unity的组件式开发提供了基础。但是在实际项目过程中我们不能一味的继承它，因为它会破坏我们原有的代码架构，并且会增大代码的维护难度，一般来说在这些情况下我们才选择继承MonoBehaviour：  协助">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/09/UnityApi/">
+
+
+
+
+
+  <title>Unity脚本常用API整理 | Nilzl's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Nilzl's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/UnityApi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LZL">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nilzl's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Unity脚本常用API整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T21:21:08+08:00">
+                2019-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/unity/" itemprop="url" rel="index">
+                    <span itemprop="name">unity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MonoBehaviour"><a href="#MonoBehaviour" class="headerlink" title="MonoBehaviour"></a>MonoBehaviour</h2><p>MonoBehaviour是unity中所有组件都要继承的基类，只有继承了MonoBehaviour才能挂载到游戏场景中的游戏对象上。可以说，MonoBehaviour为unity的组件式开发提供了基础。但是在实际项目过程中我们不能一味的继承它，因为它会破坏我们原有的代码架构，并且会增大代码的维护难度，一般来说在这些情况下我们才选择继承MonoBehaviour：</p>
+<ol>
+<li>协助渲染的脚本，像是动画控制、场景效果</li>
+<li>需要物理碰撞与触发(OnCollision与OnTrigger)</li>
+<li>需要使用coroutine的脚本(有時可以通过额外的GameObject来解决)</li>
+<li>其他与游戏主要逻辑无关的支援脚本，例如：FPS显示、debug界面</li>
+</ol>
+<h3 id="MonoBehaviour的生命周期："><a href="#MonoBehaviour的生命周期：" class="headerlink" title="MonoBehaviour的生命周期："></a>MonoBehaviour的生命周期：</h3>
+<ul>
+<li><p>Awake：当一个脚本被实例化时，Awake 被调用。我们大多在这个类中完成成员变量的初始化。</p>
+</li>
+<li><p>Start：仅在 Update 函数第一次被调用前调用。因为它是在 Awake 之后被调用的，我们可以把一些需要依赖 Awake 的变量放在Start里面初始化。 同时我们还大多在这个类中执行 StartCoroutine 进行一些协程的触发。</p>
+</li>
+<li><p>Update：当开始播放游戏帧时（此时，GameObject 已实例化完毕），其 Update 在每一帧被调用。</p>
+<a id="more"></a></li>
+<li><p>LateUpdate：LateUpdate 是在所有 Update 函数调用后被调用。</p>
+</li>
+<li><p>FixedUpdate：当 MonoBehaviour 启用时，其 FixedUpdate 在每一固定帧被调用。</p>
+</li>
+<li><p>OnEnable：当对象变为可用或激活状态时此函数被调用。</p>
+</li>
+<li><p>OnDisable：当对象变为不可用或非激活状态时此函数被调用。</p>
+</li>
+<li><p>OnDestroy：当 MonoBehaviour 将被销毁时，这个函数被调用。</p>
+</li>
+<li><p>Invoke：在 time 秒之后，调用methodName方法。<br>void  Invoke (methodName : string, time : float) :</p>
+</li>
+<li><p>InvokeRepeating：从第一次调用开始,每隔repeatRate时间调用一次.<br>void InvokeRepeating (methodName : string, time : float, repeatRate : float) : </p>
+</li>
+<li><p>CancelInvoke:取消这个MonoBehaviour上的所有调用Invoke。<br>void  CancelInvoke () : </p>
+</li>
+<li><p>IsInvoking:某指定函数是否在等候调用。<br>bool  IsInvoking (methodName : string) : </p>
+</li>
+<li><p>StartCoroutine:开启协程。一个协同程序在执行过程中,可以在任意位置使用 yield 语句。yield 的返回值控制何时恢复协同程序向下执行。协同程序在对象自有帧执行过程中堪称优秀。协同程序在性能上没有更多的开销。StartCoroutine函数是立刻返回的,但是yield可以延迟结果(yield return new WaitForSeconds（秒数）)。直到协同程序执行完毕。<br>Coroutine  StartCoroutine (routine : IEnumerator) : </p>
+</li>
+<li><p>StopCoroutine / StopAllCoroutines：停止协程/停止所有运行中的协程。</p>
+</li>
+<li><p>OnMouseEnter／OnMouseOver／OnMouseExit／OnMouseDown／OnMouseUp／OnMouseDrag：<br>当鼠标进入／悬浮／移出／点击／释放／拖拽GUIElement(GUI元素)或Collider(碰撞体)中时调用</p>
+</li>
+<li><p>OnTriggerEnter／OnTriggerExit／OnTriggerStay：<br>当Collider(碰撞体)进入／退出／停留在trigger(触发器)时调用OnTriggerEnter。OnTriggerStay 将会在每一帧被调用。</p>
+</li>
+<li><p>OnCollisionEnter／OnCollisionExit／OnCollisionStay：<br>当此collider/rigidbody触发另一个rigidbody/collider时，被调用。OnCollisionStay 将会在每一帧被调用。</p>
+</li>
+</ul>
+<h2 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h2><p>Time是游戏中经常要使用到的一个类，在实现基本的移动时通常会乘上一个Time.deltatime，在游戏中需要有时间间隔设定的地方也经常要使用Time.time来获取当前游戏时间。这里整理了一下Time类的一些常用属性。</p>
+<ul>
+<li><p>Time.time：（只读）表示从游戏开发到现在的时间，会随着游戏的暂停而停止计算。</p>
+</li>
+<li><p>Time.timeSinceLevelLoad：（只读）表示从当前Scene开始到目前为止的时间，也会随着暂停操作而停止。</p>
+</li>
+<li><p>Time.deltaTime：（只读）表示从上一帧到当前帧时间，以秒为单位。</p>
+</li>
+<li><p>Time.fixedTime：（只读）表示以秒计游戏开始的时间，固定时间以定期间隔更新（相当于fixedDeltaTime）直到达到time属性。</p>
+</li>
+<li><p>Time.fixedDeltaTime：表示以秒计间隔，在物理和其他固定帧率进行更新，在Edit-&gt;ProjectSettings-&gt;Time的Fixed Timestep可以自行设置。</p>
+</li>
+<li><p>Time.maximumDeltaTime：一帧能获得的最长时间。物理和其他固定帧速率更新(类似MonoBehaviour FixedUpdate)。</p>
+</li>
+<li><p>Time.SmoothDeltaTime：（只读）表示一个平稳的deltaTime，根据前<br>N帧的时间加权平均的值。</p>
+</li>
+<li><p>Time.timeScale：时间缩放，默认值为1。若设置&lt;1，表示时间减慢；若设置&gt;1,表示时间加快；若设置=0，则游戏暂停。可以用来加速、减速和暂停游戏，非常有用。</p>
+</li>
+<li><p>Time.frameCount：（只读）总帧数</p>
+</li>
+<li><p>Time.realtimeSinceStartup：（只读）表示自游戏开始后的总时间，即使暂停也会不断的增加。</p>
+</li>
+<li><p>Time.captureFramerate：表示设置每秒的帧率，然后不考虑真实时间。</p>
+</li>
+<li><p>Time.unscaledDeltaTime：（只读）不考虑timescale时候与deltaTime相同，若timescale被设置，则无效。</p>
+</li>
+<li><p>Time.unscaledTime：（只读）不考虑timescale时候与time相同，若timescale被设置，则无效。</p>
+</li>
+</ul>
+<h2 id="GameObject-amp-Compoment"><a href="#GameObject-amp-Compoment" class="headerlink" title="GameObject&amp;Compoment"></a>GameObject&amp;Compoment</h2><p>GameObject，游戏对象，在unity中层级列表中的每个物体都是一个游戏对象,component是游戏对象上的组件。在进行开发时，会有很多要与游戏对象和组件打交道的操作，常用的有下面这些：<br>创建游戏对象</p>
+<ul>
+<li><p>GameObject.Instantiate()：<br>public static Object Instantiate(Object original);<br>public static Object Instantiate(Object original, Transform parent);<br>根据已经创建好的prefeb生成游戏对象，一共五个重载方法对应设置生成游戏对象的位置，方向，父对象</p>
+</li>
+<li><p>GameObject.CreatPrimitive(PrimitiveType.Cube)：根据Type后的固定类型创建游戏对象</p>
+</li>
+</ul>
+<p>实例化的游戏对象可通过AddComponent&lt;&gt;()方法添加组件或自定义的脚本，通过GetComponent&lt;&gt;()获取组件或自定义的脚本，可通过.tag设置游戏物体的tag属性。<br>activeInHierarchy表示游戏物体在层级视图中的激活状态，与activeSelf属性不同的是在父物体禁用时子物体的activeInHierarchy也为false而activeSelf为true。<br>物体的激活可通过SetActive(false/true)方法设定。</p>
+<h3 id="Static-Methods"><a href="#Static-Methods" class="headerlink" title="Static Methods"></a>Static Methods</h3><ul>
+<li><p>Destroy:销毁游戏物体或组件；</p>
+</li>
+<li><p>DestroyImmediate：立即销毁游戏物体或组件(建议使用Destroy)；</p>
+</li>
+<li><p>DontDestroyOnLoad：进行场景切换时不销毁一个游戏物体，可用于设置不同场景的共享物体；</p>
+</li>
+<li><p>FindObjectOfType：根据类型在场景中找到符合条件的第一个组件（不查找未激活游戏物体）；</p>
+</li>
+<li><p>FindObjectsOfType：根据类型在场景中找到符合条件所有组件，返回值是一个数组（不查找未激活游戏物体）；</p>
+</li>
+<li><p>Find：通过名字查找一个游戏对象；</p>
+</li>
+<li><p>FindWithTag：通过查找游戏对象的tag标签名查找游戏对象；</p>
+</li>
+<li><p>FindGameObjectsWithTag：通过查找游戏对象的tag标签名查找多个游戏对象，返回值是数组；</p>
+</li>
+</ul>
+<h3 id="Public-Methods"><a href="#Public-Methods" class="headerlink" title="Public Methods"></a>Public Methods</h3><ul>
+<li><p>BroadcastMessage：对一个游戏对象及其子对象广播消息（根据方法名调用接收对象的方法，需要接收的对象脚本中有这个方法），可设定传递参数及是否需要接收对象；</p>
+</li>
+<li><p>SendMessage：只对一个游戏对象发送消息；</p>
+</li>
+<li><p>SendMessageUpwards：对一个游戏对象及其父对象发送消息；</p>
+</li>
+<li><p>GetComponent：查找游戏对象的一个组件；</p>
+</li>
+<li><p>GetComponents:查找一个游戏对象的同类型所有组件；</p>
+</li>
+<li><p>GetComponentInChildren：查找游戏对象及其子对象的一个组件；</p>
+</li>
+<li><p>GetComponentsInChildren: 查找游戏对象及其子对象的同类型所有组件；</p>
+</li>
+<li><p>GetComponentInParent: 查找游戏对象及其父对象的一个组件；</p>
+</li>
+<li><p>GetComponentsInParent: 查找游戏对象及其父对象的同类型所有组件；</p>
+</li>
+</ul>
+<p>更多详见<a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h2><p>Transform是所有游戏对象都有的一个组件，主要表示物体在三维空间的位置坐标，旋转方向以及缩放比例。通过更改它的属性可以控制物体的移动，旋转和大小变换等操作。</p>
+<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><ul>
+<li><p>chlidCount:返回对应transform的子对象个数</p>
+</li>
+<li><p>eulerAngles:返回一个旋转对应的欧拉角度数,unity中欧拉旋转顺序是z、x、y。</p>
+</li>
+<li><p>localEulerAngles:本地坐标系下的旋转欧拉角度数（本地坐标即相对父对象坐标系的变换量）</p>
+</li>
+<li><p>localPosition:本地坐标系的位置值（相对位置），即相对父对象的位置坐标</p>
+</li>
+<li><p>localRotation:本地坐标系的旋转，相对父对象的旋转</p>
+</li>
+<li><p>localScale:相对父对象的缩放比例大小</p>
+</li>
+<li><p>parent：父对象的transform</p>
+</li>
+<li><p>position：世界坐标系下的位置（绝对位置）</p>
+</li>
+<li><p>rotation：世界坐标系下的旋转，以四元数的形式存储</p>
+</li>
+<li><p>foward：z轴对应的正方向</p>
+</li>
+<li><p>right:x轴对应的正方向</p>
+</li>
+<li><p>up:y轴对应的正方向</p>
+</li>
+<li><p>localToWorldMatrix:矩阵变换的点从自身坐标转为世界坐标</p>
+</li>
+<li><p>worldTolocalMatrix:矩阵变换的点从世界坐标转为自身坐标</p>
+</li>
+</ul>
+<h3 id="Public-Methods-1"><a href="#Public-Methods-1" class="headerlink" title="Public Methods"></a>Public Methods</h3><ul>
+<li><p>DetachChlidren:解除所有子对象与自身的父子关系</p>
+</li>
+<li><p>Find:找到一个子对象transform并返回它</p>
+</li>
+<li><p>GetChild:通过index值返回子对象transform</p>
+</li>
+<li><p>LookAt:改变当前transform的旋转使得它的foward方向指向target的当前位置</p>
+</li>
+<li><p>Rotate:应用一个欧拉角的旋转角度，eulerAngles.z度围绕z轴，eulerAngles.x度围绕x轴，eulerAngles.y度围绕y轴；如果相对于留空或者设置为Space.Self 旋转角度被应用围绕变换的自身轴。（当在场景视图选择物体时，x、y和z轴显示）如果相对于 Space.World 旋转角度被应用围绕世界的x、y、z轴。</p>
+</li>
+<li><p>RotatorAround:按照angle度数围绕世界坐标对应的点的轴旋转物体</p>
+</li>
+<li><p>SetParent：设置当前对象的父对象</p>
+</li>
+<li><p>TransformPoint:变换位置，将本地坐标变换为世界坐标</p>
+</li>
+<li><p>Translate:向指定方向和距离移动游戏对象</p>
+</li>
+</ul>
+<p>更多详见<a href="https://docs.unity3d.com/ScriptReference/Transform.html" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="Vector2-Vector3"><a href="#Vector2-Vector3" class="headerlink" title="Vector2/Vector3"></a>Vector2/Vector3</h2><p>unity中用Vector来定义向量，其中常用的为二维向量vector2和三维向量vector3，vector类型在初始化时要整体赋值。</p>
+<h3 id="Static-Properties"><a href="#Static-Properties" class="headerlink" title="Static Properties"></a>Static Properties</h3><ul>
+<li>down:坐标（0，-1）/（0，-1,0）</li>
+<li>left:坐标（-1,0）/（-1,0,0）</li>
+<li>right:坐标（1,0）/（1,0,0）</li>
+<li>up:坐标（0,1）/（0,1，0）</li>
+<li>negativeInfinity:坐标（-∞，-∞）/（-∞，-∞，-∞）</li>
+<li>positiveInfinity:坐标（+∞，+∞）/（+∞，+∞，+∞）</li>
+<li>one:坐标（1,1）/（1,1,1）</li>
+<li>zero:坐标（0,0）/（0,0,0）</li>
+<li>forward:坐标（0,0,1）</li>
+<li>back:坐标(0,0,-1)</li>
+</ul>
+<h3 id="Properties-1"><a href="#Properties-1" class="headerlink" title="Properties"></a>Properties</h3><ul>
+<li>magnitude：返回一个向量的长度；</li>
+<li>normalized:返回将一个向量单位化后的向量（长度为1），对原本的坐标不产生影响；</li>
+<li>sqrmagnitude:返回一个向量长度的平方（求向量长度有开方操作更耗费性能）；</li>
+</ul>
+<h3 id="Static-Methods-1"><a href="#Static-Methods-1" class="headerlink" title="Static Methods"></a>Static Methods</h3><ul>
+<li><p>Angle：返回两个向量的夹角；</p>
+</li>
+<li><p>ClampMagnitude：ClampMagnitude(Vector2 a, float maxLength)，将一个向量的长度限制在自身a到maxLength之间；</p>
+</li>
+<li><p>Distance：Distance(Vector2 a, Vector2 b)，返回向量a-b的长度；</p>
+</li>
+<li><p>Dot:返回两个向量的点乘；</p>
+</li>
+<li><p>Lerp：同Mathf类的插值运算，在两个坐标范围内将坐标按比例返回一个坐标；</p>
+</li>
+<li><p>LerpUnclamped：LerpUnclamped(Vector2 a, Vector2 b, float t),当比例系数t大于1时最后返回的向量长度可大于b;</p>
+</li>
+<li><p>Max:返回向量中长度最大的一个向量；</p>
+</li>
+<li><p>Min:返回向量中长度最小的一个向量；</p>
+</li>
+<li><p>MoveTowards: MoveTowards(Vector2 current, Vector2 target, float maxDistanceDelta)，向量current向target坐标以不超过maxDistanceDelta的速度匀速接近；</p>
+</li>
+<li><p>Cross:返回两个向量的叉乘；</p>
+</li>
+<li><p>Normalize：将自身单位化(方向不变，长度为1)；</p>
+</li>
+</ul>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>Input用于获取用户的各种输入操作，常用的如下：</p>
+<p>###Static Methods</p>
+<ul>
+<li><p>GetKey：键盘上的一个按键持续按下触发；</p>
+</li>
+<li><p>GetKeyDown：键盘的一个按键按下触发；</p>
+</li>
+<li><p>GetKeyUp：键盘上的一个按键抬起触发；</p>
+</li>
+<li><p>GetMouseButton：鼠标按键持续按下时执行，鼠标左键0，中键（滑轮）2，右键1；</p>
+</li>
+<li><p>GetMouseButtonDown：鼠标按下时触发；</p>
+</li>
+<li><p>GetMouseButtonUp：鼠标按键抬起时触发；</p>
+</li>
+<li><p>GetButton：虚拟按键持续按下时触发；</p>
+</li>
+<li><p>GetButtonDown：虚拟按键按下时触发；</p>
+</li>
+<li><p>GetButtonUp：虚拟按键抬起时触发；</p>
+</li>
+<li><p>GetAxis：虚拟按键中的轴（Horizontal控制水平方向移动和旋转，Vertical控制前后方向的移动）中的按键按下时执行，返回一个由0到1再由1到0渐变的值，一般用于控制加速类运动；</p>
+</li>
+<li><p>GetAxisRaw：虚拟按键中的轴中的按键按下时执行，返回值为固定的1,-1，控制匀速类运动；</p>
+</li>
+</ul>
+<p>注：虚拟按键和轴均在InputManager里面设定<br>更多详见<a href="https://docs.unity3d.com/ScriptReference/Input.html" target="_blank" rel="noopener">官方文档</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/09/test/" rel="next" title="使用hexo搭建自己的个人博客">
+                <i class="fa fa-chevron-left"></i> 使用hexo搭建自己的个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="LZL">
+            
+              <p class="site-author-name" itemprop="name">LZL</p>
+              <p class="site-description motion-element" itemprop="description">做自己喜欢做的事，活成自己所希望的自己。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Nilzl" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://space.bilibili.com/87620557" target="_blank" title="Bilibili">
+                      
+                        <i class="fa fa-fw fa-bilibili"></i>Bilibili</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/" target="_blank" title="Email ll173592263@gmail.com">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>Email ll173592263@gmail.com</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MonoBehaviour"><span class="nav-number">1.</span> <span class="nav-text">MonoBehaviour</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MonoBehaviour的生命周期："><span class="nav-number">1.1.</span> <span class="nav-text">MonoBehaviour的生命周期：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Time"><span class="nav-number">2.</span> <span class="nav-text">Time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GameObject-amp-Compoment"><span class="nav-number">3.</span> <span class="nav-text">GameObject&amp;Compoment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-Methods"><span class="nav-number">3.1.</span> <span class="nav-text">Static Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Public-Methods"><span class="nav-number">3.2.</span> <span class="nav-text">Public Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transform"><span class="nav-number">4.</span> <span class="nav-text">Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties"><span class="nav-number">4.1.</span> <span class="nav-text">Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Public-Methods-1"><span class="nav-number">4.2.</span> <span class="nav-text">Public Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vector2-Vector3"><span class="nav-number">5.</span> <span class="nav-text">Vector2/Vector3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-Properties"><span class="nav-number">5.1.</span> <span class="nav-text">Static Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties-1"><span class="nav-number">5.2.</span> <span class="nav-text">Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-Methods-1"><span class="nav-number">5.3.</span> <span class="nav-text">Static Methods</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">6.</span> <span class="nav-text">Input</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LZL</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+-->
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

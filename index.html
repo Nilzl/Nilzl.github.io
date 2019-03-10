@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/Unity/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/UnityApi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LZL">
@@ -271,7 +271,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/09/Unity/" itemprop="url">Unity脚本常用API整理</a></h1>
+                <a class="post-title-link" href="/2019/03/09/UnityApi/" itemprop="url">Unity脚本常用API整理</a></h1>
         
 
         <div class="post-meta">
@@ -344,10 +344,15 @@
 
       
         
-          <h2 id="MonoBehaviour"><a href="#MonoBehaviour" class="headerlink" title="MonoBehaviour"></a>MonoBehaviour</h2><ul>
-<li><p>MonoBehaviour的生命周期：</p>
-<img src="/2019/03/09/Unity/img1.png">
-</li>
+          <h2 id="MonoBehaviour"><a href="#MonoBehaviour" class="headerlink" title="MonoBehaviour"></a>MonoBehaviour</h2><p>MonoBehaviour是unity中所有组件都要继承的基类，只有继承了MonoBehaviour才能挂载到游戏场景中的游戏对象上。可以说，MonoBehaviour为unity的组件式开发提供了基础。但是在实际项目过程中我们不能一味的继承它，因为它会破坏我们原有的代码架构，并且会增大代码的维护难度，一般来说在这些情况下我们才选择继承MonoBehaviour：</p>
+<ol>
+<li>协助渲染的脚本，像是动画控制、场景效果</li>
+<li>需要物理碰撞与触发(OnCollision与OnTrigger)</li>
+<li>需要使用coroutine的脚本(有時可以通过额外的GameObject来解决)</li>
+<li>其他与游戏主要逻辑无关的支援脚本，例如：FPS显示、debug界面</li>
+</ol>
+<h3 id="MonoBehaviour的生命周期："><a href="#MonoBehaviour的生命周期：" class="headerlink" title="MonoBehaviour的生命周期："></a>MonoBehaviour的生命周期：</h3>
+<ul>
 <li><p>Awake：当一个脚本被实例化时，Awake 被调用。我们大多在这个类中完成成员变量的初始化。</p>
 </li>
 <li><p>Start：仅在 Update 函数第一次被调用前调用。因为它是在 Awake 之后被调用的，我们可以把一些需要依赖 Awake 的变量放在Start里面初始化。 同时我们还大多在这个类中执行 StartCoroutine 进行一些协程的触发。</p>
@@ -355,7 +360,7 @@
 <li><p>Update：当开始播放游戏帧时（此时，GameObject 已实例化完毕），其 Update 在每一帧被调用。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/09/Unity/#more" rel="contents">
+            <a class="btn" href="/2019/03/09/UnityApi/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
