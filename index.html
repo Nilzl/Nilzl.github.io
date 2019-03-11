@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/10/Struct/" itemprop="url">数据结构</a></h1>
+                <a class="post-title-link" href="/2019/03/10/Struct/" itemprop="url">数据结构之链表</a></h1>
         
 
         <div class="post-meta">
@@ -637,10 +637,10 @@
       
         
           <p>委托是一种引用类型，它是对具有特定参数列表和返回类型的方法的引用。在了解委托之前，首先要理解值类型和引用类型的概念。</p>
-<h2 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h2><p>声明一个值类型变量，编译器会在栈上分配一个空间，这个空间对应着该值类型变量，空间里存储的就是该变量的值。引用类型的实例分配在堆上，新建一个引用类型实例，得到的变量值对应的是该实例的内存分配地址。值类型之间的赋值，原变量的变化不会引起新变量的变化；引用类型之间赋值，二者就指向了同一块内存区域，无论哪一个变量发生了变化，二者都会改变。<br>装箱和拆箱操作：装箱就是值类型到引用类型的转化过程。将一个值类型变量装箱成一个引用类型变量，首先会在托管堆上为新的引用类型变量分配内存空间，然后将值类型变量拷贝到托管堆上新分配的对象内存中，最后返回新分配的对象内存地址。装箱操作是可逆的，所以还有拆箱操作。拆箱操作获取指向对象中包含值类型部分的指针，然后由程序员手动将其对应的值拷贝给值类型变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static class BoxingAndUnboxing</span><br><span class="line">  &#123;</span><br><span class="line">     public static void Demonstration()</span><br><span class="line">      &#123;</span><br><span class="line">          int ageInt = new int();</span><br><span class="line"></span><br><span class="line">          // Boxing operation.</span><br><span class="line">       object ageObject = ageInt;</span><br><span class="line"></span><br><span class="line">         //ageObject = null;</span><br><span class="line">  </span><br><span class="line">         // Unboxing operation.</span><br><span class="line">         ageInt = (int)ageObject;</span><br><span class="line">  </span><br><span class="line">         Console.WriteLine(ageInt);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h2><p>声明一个值类型变量，编译器会在栈上分配一个空间，这个空间对应着该值类型变量，空间里存储的就是该变量的值。引用类型的实例分配在堆上，新建一个引用类型实例，得到的变量值对应的是该实例的内存分配地址。值类型之间的赋值，原变量的变化不会引起新变量的变化；引用类型之间赋值，二者就指向了同一块内存区域，无论哪一个变量发生了变化，二者都会改变。<br>装箱和拆箱操作：装箱就是值类型到引用类型的转化过程。将一个值类型变量装箱成一个引用类型变量，首先会在托管堆上为新的引用类型变量分配内存空间，然后将值类型变量拷贝到托管堆上新分配的对象内存中，最后返回新分配的对象内存地址。装箱操作是可逆的，所以还有拆箱操作。拆箱操作获取指向对象中包含值类型部分的指针，然后由程序员手动将其对应的值拷贝给值类型变量。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">BoxingAndUnboxing</span></span></span><br><span class="line"><span class="class">  </span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Demonstration</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">          <span class="keyword">int</span> ageInt = <span class="keyword">new</span> <span class="keyword">int</span>();</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Boxing operation.</span></span><br><span class="line">       object ageObject = ageInt;</span><br><span class="line"></span><br><span class="line">         <span class="comment">//ageObject = null;</span></span><br><span class="line">  </span><br><span class="line">         <span class="comment">// Unboxing operation.</span></span><br><span class="line">         ageInt = (<span class="keyword">int</span>)ageObject;</span><br><span class="line">  </span><br><span class="line">         Console.WriteLine(ageInt);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="C-中的委托"><a href="#C-中的委托" class="headerlink" title="C#中的委托"></a>C#中的委托</h2><p>C# 中的委托（Delegate）类似于 C 或 C++ 中函数的指针。委托（Delegate） 是存有对某个方法的引用的一种引用类型变量。引用可在运行时被改变。委托声明决定了可由该委托引用的方法。委托可指向一个与其具有相同标签的方法</p>
-<h3 id="声明委托"><a href="#声明委托" class="headerlink" title="声明委托"></a>声明委托</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delegate &lt;return type&gt; &lt;delegate-name&gt; &lt;parameter list&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="实例化委托"><a href="#实例化委托" class="headerlink" title="实例化委托"></a>实例化委托</h3><p>一旦声明了委托类型，委托对象必须使用 new 关键字来创建，且与一个特定的方法有关。当创建委托时，传递到 new 语句的参数就像方法调用一样书写，但是不带有参数,例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public delegate void printString(string s);</span><br><span class="line">...</span><br><span class="line">printString ps1 = new printString(WriteToScreen);</span><br><span class="line">printString ps2 = new printString(WriteToFile);</span><br></pre></td></tr></table></figure></p>
+<h3 id="声明委托"><a href="#声明委托" class="headerlink" title="声明委托"></a>声明委托</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delegate &lt;<span class="keyword">return</span> type&gt; &lt;delegate-name&gt; &lt;parameter list&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="实例化委托"><a href="#实例化委托" class="headerlink" title="实例化委托"></a>实例化委托</h3><p>一旦声明了委托类型，委托对象必须使用 new 关键字来创建，且与一个特定的方法有关。当创建委托时，传递到 new 语句的参数就像方法调用一样书写，但是不带有参数,例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> delegate <span class="keyword">void</span> <span class="title">printString</span><span class="params">(string s)</span></span>;</span><br><span class="line">...</span><br><span class="line">printString ps1 = <span class="keyword">new</span> printString(WriteToScreen);</span><br><span class="line">printString ps2 = <span class="keyword">new</span> printString(WriteToFile);</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/10/C-1/#more" rel="contents">
@@ -788,7 +788,7 @@
         
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在使用C++中的过程中，由于其动态分配内存的特殊机制，很容易出现new出一块内存分配，但程序还没执行到delete就跳转或返回的情况。如果new出来的内存没有及时得到释放，就会造成内存泄漏。使用智能指针就能在很大程度上避免这个问题，从定义上来看智能指针就是一个类，当超出类的作用域范围时就会调用析构函数释放资源，这也就是智能指针智能的地方。</p>
 <h2 id="智能指针介绍"><a href="#智能指针介绍" class="headerlink" title="智能指针介绍"></a>智能指针介绍</h2><h3 id="auto-ptr（C-11已弃用）"><a href="#auto-ptr（C-11已弃用）" class="headerlink" title="auto_ptr（C++11已弃用）"></a>auto_ptr（C++11已弃用）</h3><p>在C++11的标准下，原本可能造成不安全的智能指针auto_ptr被弃用了。由于auto_ptr可以直接赋值给另外一个auto_ptr，所以当在函数间传递auto_ptr时，哪怕只是一次值传递，auto_ptr关联的内存块所有权也会传递到值传递参数的临时变量中，然后随着函数执行完成，临时变量离开作用域对应内存随之释放。这时候程序再访问原来的auto_ptr就会导致程序崩溃。</p>
-<h3 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h3><p>shared_ptr,它有一个叫做共享所有权(sharedownership)的概念。shared_ptr的目标非常简单：多个指针可以同时指向一个对象，当最后一个shared_ptr离开作用域时，内存才会自动释放。shared_ptr的创建：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void main( )</span><br><span class="line">&#123;</span><br><span class="line"> shared_ptr&lt;int&gt; sptr1( new int );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h3><p>shared_ptr,它有一个叫做共享所有权(sharedownership)的概念。shared_ptr的目标非常简单：多个指针可以同时指向一个对象，当最后一个shared_ptr离开作用域时，内存才会自动释放。shared_ptr的创建：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; sptr1( <span class="keyword">new</span> <span class="keyword">int</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/10/C/#more" rel="contents">
@@ -1332,6 +1332,9 @@
 
 
 
+  
+  
+
 
 
 
@@ -1368,6 +1371,16 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
