@@ -354,13 +354,23 @@
 
       
         
-          
-            <p>大概是半个月之前，在牛客网上注意到针对2020届的提前批校招。本着尝试的想法投了几个简历，意外地收到了吉比特通知面试的回应。前后准备了小半个月，自以为信心满满把握十足，可惜结果不如人愿，50分钟左右的面试时间后，立马就收到了未通过的消息。就过程和结果来看，自己最大的问题还是出在基础上了，知识体系结构不够完善，存在一些知其然不知其所以然的地方，一下就被问倒了。查漏补缺还是很重要的，这里总结一下这次面试过程中几个被问倒的地方，算是积累一些经验吧。</p>
-<h2 id="C-中move函数的使用和实现"><a href="#C-中move函数的使用和实现" class="headerlink" title="C++中move函数的使用和实现"></a>C++中move函数的使用和实现</h2><h2 id="如何避免隐式类型转换"><a href="#如何避免隐式类型转换" class="headerlink" title="如何避免隐式类型转换"></a>如何避免隐式类型转换</h2><h2 id="智能指针unique-ptr的实现"><a href="#智能指针unique-ptr的实现" class="headerlink" title="智能指针unique_ptr的实现"></a>智能指针unique_ptr的实现</h2><h2 id="最小生成树的实现——普里姆算法"><a href="#最小生成树的实现——普里姆算法" class="headerlink" title="最小生成树的实现——普里姆算法"></a>最小生成树的实现——普里姆算法</h2><h2 id="渲染管线流程"><a href="#渲染管线流程" class="headerlink" title="渲染管线流程"></a>渲染管线流程</h2>
-          
+          <p>大概是半个月之前，在牛客网上注意到针对2020届的提前批校招。本着尝试的想法投了几个简历，意外地收到了吉比特通知面试的回应。前后准备了小半个月，自以为信心满满把握十足，可惜结果不如人愿，50分钟左右的面试时间后，立马就收到了未通过的消息。就过程和结果来看，自己最大的问题还是出在基础上了，知识体系结构不够完善，存在一些知其然不知其所以然的地方，一下就被问倒了。查漏补缺还是很重要的，这里总结一下这次面试过程中几个被问倒的地方，算是积累一些经验吧。</p>
+<h2 id="C-中move函数"><a href="#C-中move函数" class="headerlink" title="C++中move函数"></a>C++中move函数</h2><h3 id="move的使用及实现"><a href="#move的使用及实现" class="headerlink" title="move的使用及实现"></a>move的使用及实现</h3><p>在C++11中，标准库在<utility>中提供了一个有用的函数std::move，std::move并不能移动任何东西，它唯一的功能是将一个左值强制转化为右值引用，继而可以通过右值引用使用该值，以用于移动语义。<br>从实现上讲，std::move基本等同于一个类型转换：static_cast&lt;T&amp;&amp;&gt;(lvalue)<br>std::move的特点：<br>std::move函数可以以非常简单的方式将左值引用转换为右值引用。<br>通过std::move，可以避免不必要的拷贝操作。<br>std::move是为性能而生。<br>std::move是将对象的状态或者所有权从一个对象转移到另一个对象，只是转移，没有内存的搬迁或者内存拷贝。</utility></p>
+<h3 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h3><p>说到了move就不得不说右值引用，使用move带来的好处可以说就是右值引用的作用了。右值引用和左值引用是C++ 11加入的新特性（左值和右值简单的判断：看能不能对表达式取地址，如果能，则为左值，否则为右值）。一般情况下的引用我们都认为是左值引用，一个&amp;定义的是对一个类型的引用，两个&amp;符号&amp;&amp;定义的就是右值引用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = getVar();</span><br></pre></td></tr></table></figure>
+<p>在这样一行代码中产生了两种类型的值，左值i以及函数getVar()返回的临时值，这个临时值在表达式结束后就销毁了，这个值就是右值。左值i在表达式结束后仍然存在。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T&amp;&amp; k = getVar();</span><br></pre></td></tr></table></figure>
+<p>使用了”&amp;&amp;”符号定义就是右值引用。由于右值是匿名变量，所以我们也只能通过引用的方式来获取右值。在这里使用右值引用后，函数getVar()产生的临时值就不会像第一行代码那样在表达式结束后就销毁，它的生命周期会通过右值引用得到延续，和变量k的生命周期一样。<br>这里就体现了右值引用的第一个特点:<strong>通过声明右值引用，可以延长作为临时变量的右值的生命周期，其生命周期会和右值引用类型变量的生命周期一致。</strong>只要该变量还活着，该右值临时量将会一直存活下去。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/diary1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
